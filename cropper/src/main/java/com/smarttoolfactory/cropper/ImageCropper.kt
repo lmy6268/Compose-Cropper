@@ -288,6 +288,7 @@ private fun ImageCropperImpl(
         val drawHandles = cropType == CropType.Dynamic
         val strokeWidth = cropStyle.strokeWidth
 
+
         DrawingOverlay(
             modifier = Modifier.size(containerWidth, containerHeight),
             drawOverlay = drawOverlay,

@@ -27,7 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.dp
-import com.smarttoolfactory.colorpicker.widget.drawChecker
+//import com.smarttoolfactory.colorpicker.widget.drawChecker
 import com.smarttoolfactory.composecropper.ImageSelectionButton
 import com.smarttoolfactory.composecropper.R
 import com.smarttoolfactory.composecropper.preferences.CropStyleSelectionMenu
@@ -36,6 +36,7 @@ import com.smarttoolfactory.composecropper.ui.theme.ComposeCropperTheme
 import com.smarttoolfactory.cropper.ImageCropper
 import com.smarttoolfactory.cropper.model.OutlineType
 import com.smarttoolfactory.cropper.model.RectCropShape
+import com.smarttoolfactory.cropper.model.aspectRatios
 import com.smarttoolfactory.cropper.settings.*
 import kotlinx.coroutines.launch
 
@@ -65,7 +66,7 @@ fun ImageCropDemo() {
         )
     }
 
-    val handleSize: Float = LocalDensity.current.run { 20.dp.toPx() }
+    val handleSize: Float = LocalDensity.current.run { 50.dp.toPx() }
 
     var cropProperties by remember {
         mutableStateOf(
@@ -74,11 +75,21 @@ fun ImageCropDemo() {
                     OutlineType.Rect,
                     RectCropShape(0, "Rect")
                 ),
-                handleSize = handleSize
+                handleSize = handleSize,
+                aspectRatio = aspectRatios[3].aspectRatio,
+                fixedAspectRatio = true
             )
         )
     }
-    var cropStyle by remember { mutableStateOf(CropDefaults.style()) }
+    var cropStyle by remember {
+        mutableStateOf(
+            CropDefaults.style(
+                overlayColor = Color.White,
+                backgroundColor = Color.White.copy(0.5f),
+                handleColor = Color.Blue
+            )
+        )
+    }
     val coroutineScope = rememberCoroutineScope()
 
     var selectionPage by remember { mutableStateOf(SelectionPage.Properties) }
@@ -91,9 +102,9 @@ fun ImageCropDemo() {
     }
 
     ComposeCropperTheme(
-        darkTheme = when(theme){
-            CropTheme.Dark ->true
-            CropTheme.Light->false
+        darkTheme = when (theme) {
+            CropTheme.Dark -> true
+            CropTheme.Light -> false
             else -> isSystemInDarkTheme()
         }
     ) {
@@ -260,7 +271,7 @@ private fun ShowCroppedImageDialog(imageBitmap: ImageBitmap, onDismissRequest: (
         text = {
             Image(
                 modifier = Modifier
-                    .drawChecker(RoundedCornerShape(8.dp))
+//                    .drawChecker(RoundedCornerShape(8.dp))
                     .fillMaxWidth()
                     .aspectRatio(1f),
                 contentScale = ContentScale.Fit,

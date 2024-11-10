@@ -14,7 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.smarttoolfactory.colorpicker.dialog.ColorPickerRingDiamondHSLDialog
+//import com.smarttoolfactory.colorpicker.dialog.ColorPickerRingDiamondHSLDialog
 import com.smarttoolfactory.cropper.settings.CropStyle
 import com.smarttoolfactory.cropper.settings.CropType
 
@@ -157,12 +157,12 @@ internal fun ColorSelection(
     }
 
     if (showColorDialog) {
-        ColorPickerRingDiamondHSLDialog(
-            initialColor = color,
-            onDismiss = { colorChange: Color, _: String ->
-                showColorDialog = false
-                onColorChange(colorChange)
-            }
-        )
+//        ColorPickerRingDiamondHSLDialog(
+//            initialColor = color,
+//            onDismiss = { colorChange: Color, _: String ->
+//                showColorDialog = false
+//                onColorChange(colorChange)
+//            }
+//        )
     }
 }

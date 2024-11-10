@@ -47,7 +47,9 @@ internal fun DrawingOverlay(
     val strokeWidthPx = LocalDensity.current.run { strokeWidth.toPx() }
 
     val pathHandles = remember {
-        Path()
+        Path(
+
+        )
     }
 
     when (cropOutline) {
@@ -280,7 +282,7 @@ private fun DrawScope.drawOverlay(
                 path = pathHandles,
                 color = handleColor,
                 style = Stroke(
-                    width = strokeWidth * 2,
+                    width = strokeWidth * 6,
                     cap = StrokeCap.Round,
                     join = StrokeJoin.Round
                 )
